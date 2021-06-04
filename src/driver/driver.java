@@ -3,6 +3,7 @@ package driver;
 import java.util.ArrayList;
 
 import utils.Save;
+import utils.Gephi;
 import bean.Network;
 import bean.basis.Node;
 import factory.HeaderFactory;
@@ -15,6 +16,7 @@ public class driver{
 	public static void main(String args[]) {
 		Network network = new Network();
 		network.importFromFile("examples\\2_4_4.network");
+		utils.Gephi.network2gml(network);
 		//network.importFromFile("examples\\4_8_16.network");
 		//network.importFromFile("examples\\simple_stanford.network");
 		Node Pkt = new Node();
@@ -32,5 +34,6 @@ public class driver{
 		ArrayList<Node> result = TransferFuncFactory.findReachabilityByPropagation(network.getNTF(), network.getTTF(), Pkt, Ports);
 		System.out.println("Path num: " + result.size());
 		System.out.println(result);
+		utils.Gephi.path2gml(network, result);
 	}
 }
