@@ -70,6 +70,19 @@ public class HeaderFactory{
 		return header;
 	}
 	
+	public static Header generateOutputHeader(long value, int length) {
+		if(config.TypeConfig.RULE_TYPE == "Atom") {
+			Atom atom = new Atom(length);
+			HashSet<Integer> atomSet = new HashSet<Integer>();
+			atomSet.add((int)value);
+			atom.setAtomIndexs(atomSet);
+			return APVTransFunc.AtomToHeader(atom);
+		}else {
+			String wc = General.long2WC(value, length);
+			return generateHeader(wc);
+		}
+	}
+	
 	public static Header generateOutputHeader(int value, int length) {
 		if(config.TypeConfig.RULE_TYPE == "Atom") {
 			Atom atom = new Atom(length);

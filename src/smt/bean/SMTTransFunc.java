@@ -136,7 +136,7 @@ public class SMTTransFunc implements TransferFunc{
 						arrivedPorts.add(port);
 					}
 				}else if(keyString.equals("pkt")) {
-					resultHdr = HeaderFactory.generateOutputHeader(Integer.parseInt(value.toString()), inputPkt.getHdr().getLength());
+					resultHdr = HeaderFactory.generateOutputHeader(Long.parseLong(value.toString()), inputPkt.getHdr().getLength());
 				}
 			}
 			for(int arrivedPort : arrivedPorts) {

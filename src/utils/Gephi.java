@@ -126,18 +126,20 @@ public class Gephi{
 					}
 				}
 				Node node = path.get(i);
-				for(int j = 0; j < node.getVisits().size()-1; j++) {
+				if(node.getVisits().size() != 0) {
+					for(int j = 0; j < node.getVisits().size()-1; j++) {
+						out.write("  edge [\n");
+						out.write("    source " + Integer.toString(node.getVisits().get(j)) + "\n");
+						out.write("    target " + Integer.toString(node.getVisits().get(j+1)) + "\n");
+						out.write("    label " + node.getHdr().toString().replace(" ","") + "\n");
+						out.write("  ]\n");
+					}
 					out.write("  edge [\n");
-					out.write("    source " + Integer.toString(node.getVisits().get(j)) + "\n");
-					out.write("    target " + Integer.toString(node.getVisits().get(j+1)) + "\n");
-					out.write("    label " + node.getHdr().toString() + "\n");
+					out.write("    source " + Integer.toString(node.getVisits().get(node.getVisits().size()-1)) + "\n");
+					out.write("    target " + Integer.toString(node.getPort()) + "\n");
+					out.write("    label " + node.getHdr().toString().replaceAll(" ", "") + "\n");
 					out.write("  ]\n");
 				}
-				out.write("  edge [\n");
-				out.write("    source " + Integer.toString(node.getVisits().get(node.getVisits().size()-1)) + "\n");
-				out.write("    target " + Integer.toString(node.getPort()) + "\n");
-				out.write("    label " + node.getHdr().toString() + "\n");
-				out.write("  ]\n");
 				out.write("]");
 				out.close();
 				System.out.println("Path gml " + Integer.toString(i) + " output success");

@@ -109,6 +109,7 @@ public class Network implements Serializable{
 	    } catch (Exception e) {
 			e.printStackTrace();
 		}
+		RuleFactory.Preprocess(this.NTF);
 	}
 	
 	public void outputToFile(String FileName) {

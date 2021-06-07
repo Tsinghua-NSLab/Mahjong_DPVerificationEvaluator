@@ -15,6 +15,15 @@ public class General{
 		return result;
 	}
 	
+	public static String long2WC(long input, int length) {
+		String result = "";
+		for(int i = 0; i<length; i++) {
+			result = (input&1) + result;
+			input = input >>> 1;
+		}
+		return result;
+	}
+	
 	public static String bitset2hex(BitSet bitset, int length) {
 		String result = "";
 		for(int i = 0; i < length; i++) {
