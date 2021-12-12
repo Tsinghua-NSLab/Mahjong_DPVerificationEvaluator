@@ -1,5 +1,6 @@
 # What is Mahjong?
-A Generic Framework for Network Data Plane Verification
+Mahjong: A Generic Framework for Network Data Plane Verification
+
 The pdf link(after publishment) 
 
 # How to Use
