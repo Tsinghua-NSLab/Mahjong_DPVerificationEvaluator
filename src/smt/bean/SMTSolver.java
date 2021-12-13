@@ -39,49 +39,6 @@ public class SMTSolver{
 		}
 	}
 
-	public void initTest() {
-		//ports
-		ports.add(1);
-		ports.add(2);
-		ports.add(3);
-		ports.add(4);
-		//portToArrive
-		for(int port:ports) {
-			portToArrive.put(port, ctx.mkBoolConst(Integer.toString(port)));
-		}
-		//idToRule
-		IntExpr lengthExpr = ctx.mkInt(cs.getFormat().get("length")*2);
-		BitVecExpr rule1Expr = ctx.mkBV(0xFFFFFF55, cs.getFormat().get("length")*2);
-		BitVecExpr rule2Expr = ctx.mkBV(0xFFFFFFFF, cs.getFormat().get("length")*2); 
-		BitVecExpr rule3Expr = ctx.mkBV(0x5555FFF6, cs.getFormat().get("length")*2);
-		Expr rule1 = IPSort.mkDecl().apply(lengthExpr, rule1Expr);
-		Expr rule2 = IPSort.mkDecl().apply(lengthExpr, rule2Expr);
-		Expr rule3 = IPSort.mkDecl().apply(lengthExpr, rule3Expr);
-		idToRule.put("rule1", rule1);
-		idToRule.put("rule2", rule2);
-		idToRule.put("rule3", rule3);
-		//portToRule
-		portToRule.put(1, new ArrayList<String>());
-		portToRule.get(1).add("rule1");
-		portToRule.put(2, new ArrayList<String>());
-		portToRule.get(2).add("rule2");
-		portToRule.put(3, new ArrayList<String>());
-		portToRule.get(3).add("rule3");
-		//ruleToPort
-		ruleToPort.put("rule1", new ArrayList<Integer>());
-		ruleToPort.get("rule1").add(2);
-		ruleToPort.put("rule2", new ArrayList<Integer>());
-		ruleToPort.get("rule2").add(3);
-		ruleToPort.put("rule3", new ArrayList<Integer>());
-		ruleToPort.get("rule3").add(4);
-		//header in port 1
-		BitVecExpr headerExpr = ctx.mkBV(0xFFFFFFFF, cs.getFormat().get("length")*2);
-		portToHeader.put(1, IPSort.mkDecl().apply(lengthExpr,headerExpr)); 
-		//header in port 2,3,4
-		portToHeader.put(2, IPSort.mkDecl().apply(lengthExpr,ctx.mkBVConst("rule2bit", 32)));
-		portToHeader.put(3, IPSort.mkDecl().apply(lengthExpr,ctx.mkBVConst("rule3bit", 32)));
-		portToHeader.put(4, IPSort.mkDecl().apply(lengthExpr,ctx.mkBVConst("rule4bit", 32)));
-	}
 	public void addRule(int inPort){
 		FuncDecl getBit = IPSort.getFieldDecls()[1];
 		for(String ruleID: portToRule.get(inPort)) {
@@ -116,14 +73,5 @@ public class SMTSolver{
 		BitVecExpr findZ = ctx.mkBVOR(test, testRight);
 		BitVecExpr Helper = ctx.mkBV(0x55555555,32);
 		return ctx.mkEq(Helper, ctx.mkBVAND(findZ, Helper));
-	}
-	public static void main(String args[]) {
-		SMTSolver testSMT = new SMTSolver();
-		testSMT.init();
-		testSMT.initTest();
-		for(int i = 1; i< 4;i++) {
-			testSMT.addRule(i);
-		}
-		testSMT.Solve();
 	}
 }

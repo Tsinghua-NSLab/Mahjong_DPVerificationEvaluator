@@ -292,26 +292,4 @@ public class Wildcard implements AbstractIP,Serializable{
 	public String toString() {
 		return getString();
 	}
-	
-	/*public static ArrayList<Wildcard> compressWildCardList(ArrayList<Wildcard> l) {
-		ArrayList<Integer> popIndex = new ArrayList<Integer>();
-		for(int i = 0; i< l.size(); i++) {
-			for(int j = i+1; j < l.size(); j++) {
-				if(l.get(i).contains(l.get(j))) {
-					popIndex.add(j);
-				}
-				if(l.get(j).contains(l.get(i))) {
-					popIndex.add(i);
-				}
-			}
-		}
-		ArrayList<Wildcard> result = new ArrayList<Wildcard>();
-		for(int i = 0; i < l.size(); i++) {
-			if(!popIndex.contains(i)) {
-				result.add(l.get(i));
-			}
-		}
-		return result;
-	}*/
-	
 }

@@ -10,6 +10,7 @@ import factory.HeaderFactory;
 import interfaces.Header;
 
 public class APVTransFunc{
+	// In fact it is a preprocessing class for atomic rule set
 	public static ArrayList<Predicate> predicates = new ArrayList<Predicate>();
 	BasicTF TF;
 	//TODO use hashmap to replace arrayList?

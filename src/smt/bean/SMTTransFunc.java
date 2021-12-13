@@ -39,15 +39,8 @@ public class SMTTransFunc implements TransferFunc{
 	public ArrayList<Node> solve(Node inputPkt, ArrayList<Integer> outPorts, HashSet<Integer> edgePorts) {
 		ArrayList<Node> result = new ArrayList<Node>();
 		ArrayList<Integer> arrivedPorts = new ArrayList<Integer>();
-		//TODO the definition of header length
-		//BitVecExpr pkt = this.ctx.mkBVConst("pkt", inputPkt.getHdr().getLength());
+
 		Expr pkt = HeaderFactory.generateZ3Header(ctx, inputPkt.getHdr().getLength());
-		//if(!inputPkt.getHdr().isEmpty()) {
-			//TODO init pktValue from inputPkt
-		//IntExpr pktValue = this.ctx.mkInt(7);//(0xaaab, 16);
-		//BoolExpr pkt_rule = this.ctx.mkEq(pkt, pktValue);
-		//this.solver.add(pkt_rule);
-		//}
 		
 		// not empty constraints
 		this.solver.add(HeaderFactory.generateNotEmptyRule(ctx, inputPkt.getHdr().getLength()));
