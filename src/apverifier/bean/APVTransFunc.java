@@ -24,7 +24,7 @@ public class APVTransFunc{
 		this.TF = TF;
 		generatePredicates();
 		setRules();
-		System.out.print("");
+		System.out.print("Finished Atom Ruleset Generation");
 	}
 	public int generateNextID() {
 		return nextID++;

@@ -9,6 +9,7 @@ import hassel.bean.HSAVerifier;
 import interfaces.TransferFunc;
 import inverse.bean.InverseTransFunc;
 import inverse.bean.InverseVerifier;
+import libra.bean.GraphVerifier;
 import smt.bean.SMTTransFunc;
 import smt.bean.Z3Verifier;
 
@@ -25,6 +26,8 @@ public class TransferFuncFactory{
 		}else if(type == "Z3") {
 			//SMTTransFunc TF = new SMTTransFunc(BasicNTF, BasicTTF);
 			return Z3Verifier.findReachabilityByPropagation(BasicNTF, BasicTTF, Pkt, Ports);
+		}else if(type == "Graph") {
+			return GraphVerifier.findReachability(BasicNTF, BasicTTF, Pkt, Ports);
 		}
 		return null;
 	}

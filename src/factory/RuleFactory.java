@@ -9,6 +9,7 @@ import bean.basis.Influence;
 import bean.basis.Rule;
 import config.TypeConfig;
 import interfaces.Header;
+import libra.bean.LibraTransFunc;
 
 public class RuleFactory{
 	private static void Preprocess(String type, BasicTF TF) {
@@ -18,6 +19,9 @@ public class RuleFactory{
 			TF.ruleDecouple();
 		}else if(type == "Atom") {
 			new APVTransFunc(TF);
+		}else if(type == "Graph") {
+			TF.ruleDecouple();
+			new LibraTransFunc(TF);
 		}
 	}
 	public static void Preprocess(BasicTF TF) {

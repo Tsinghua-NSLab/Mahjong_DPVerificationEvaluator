@@ -21,8 +21,9 @@ public class driver{
 		utils.Gephi.network2gml(network);
 		Node Pkt = new Node();
 		//32 bit for StanfordSimple, 34 bit for fattrees
-		Pkt.setHdr(HeaderFactory.generateInputHeader(34,'x'));
+		//Pkt.setHdr(HeaderFactory.generateInputHeader(34,'x'));
 		//Pkt.setHdr(HeaderFactory.generateHeader(APVTransFunc.predicates.size()));
+		Pkt.setHdr(HeaderFactory.generateInputHeader("xxxxxxxxxxxxxxxxxxxxxxxxxx11111110"));
 		
 		Pkt.setPort(100);//inport for fattree 244
 		//Pkt.setPort(10101);//inport for fattree 4816

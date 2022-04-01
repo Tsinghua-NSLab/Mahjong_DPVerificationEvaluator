@@ -13,7 +13,7 @@ import interfaces.TransferFunc;
 import smt.bean.SMTTransFunc;
 
 public class Z3Verifier{
-	public static ArrayList<Node> findReachabilityByfindReachabilityByPropagation(Network network, Node inputPkt, ArrayList<Integer> outPorts){
+	public static ArrayList<Node> findReachabilityByPropagation(Network network, Node inputPkt, ArrayList<Integer> outPorts){
 		return findReachabilityByPropagation(network.getNTF(),network.getTTF(),inputPkt,outPorts);
 	}
 	
